@@ -14,3 +14,22 @@ echo 'Finished cloning'
 
 # Then, add here code to compile and run, and do any post-processing of the
 # tests
+set -e
+if [[ -f "student-submission/ListExamples.java" ]]
+then
+    echo "File found"
+else
+    echo "Wrong file submitted"
+    exit
+fi
+
+cp -r student-submission/ListExamples.java grading-area
+cp -r TestListExamples.java grading-area
+cp -r lib grading-area
+
+set +e
+
+cd ./grading-area
+javac -cp $CPATH *.java
+java -cp $CPATH TestListExamples.java
+echo $?
