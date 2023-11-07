@@ -26,10 +26,13 @@ fi
 cp -r student-submission/ListExamples.java grading-area
 cp -r TestListExamples.java grading-area
 cp -r lib grading-area
-
 set +e
-
 cd ./grading-area
-javac -cp $CPATH *.java
-java -cp $CPATH TestListExamples.java
-echo $?
+javac -cp $CPATH  *.java
+if [ $? -ne 0 ]
+then
+    echo "compilation error"
+    exit 1
+fi
+java -cp $CPATH org.junit.runner.JUnitCore TestListExamples
+
