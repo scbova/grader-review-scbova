@@ -28,11 +28,19 @@ cp -r TestListExamples.java grading-area
 cp -r lib grading-area
 set +e
 cd ./grading-area
-javac -cp $CPATH  *.java
+javac -cp $CPATH  *.java > /grading-area/compilation.txt
+
 if [ $? -ne 0 ]
 then
     echo "compilation error"
     exit 1
 fi
+
 java -cp $CPATH org.junit.runner.JUnitCore TestListExamples
 
+#PASSED = 0
+#FAILED = 0
+
+#output = `java -cp $CPATH org.junit.runner.JUnitCore TestListExamples`
+
+#failures=`grep "Failures: 1" /grading-area/run-results.txt`
