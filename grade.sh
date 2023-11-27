@@ -28,7 +28,7 @@ cp -r TestListExamples.java grading-area
 cp -r lib grading-area
 set +e
 cd ./grading-area
-javac -cp $CPATH  *.java > /grading-area/compilation.txt
+javac -cp $CPATH  *.java
 
 if [ $? -ne 0 ]
 then
